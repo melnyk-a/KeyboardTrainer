@@ -3,10 +3,732 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:KeyboardTrainer"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+      
+        xmlns:local="clr-namespace:KeyboardTrainer.KeyChars"
         
-    </Grid>
+        Title="MainWindow" Height="450" Width="1000" PreviewKeyDown="Window_PreviewKeyDown" PreviewKeyUp="Window_PreviewKeyUp"  >
+    <DockPanel LastChildFill="True" Margin="3">
+        <Grid DockPanel.Dock="Bottom" Margin="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                <ColumnDefinition Width="6*"></ColumnDefinition>
+                <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                <ColumnDefinition Width="1.5*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Border Grid.Column="0" BorderBrush="Black" BorderThickness="1" CornerRadius="10" Margin="3"  Background="Gray">
+                <TextBlock 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" 
+                    Tag="{x:Static local:ControlKeys.LeftCtrl}" 
+                    Loaded="TextBlock_Loaded"/>
+            </Border>
+            <Border Grid.Column="1" BorderBrush="Black" BorderThickness="1" CornerRadius="10" Margin="3"  Background="Gray">
+                <TextBlock 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" 
+                    Tag="{x:Static local:ControlKeys.LeftWin}" 
+                    Loaded="TextBlock_Loaded"/>
+            </Border>
+            <Border Grid.Column="2" BorderBrush="Black" BorderThickness="1" CornerRadius="10" Margin="3"  Background="Gray">
+                <TextBlock 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" 
+                    Tag="{x:Static local:ControlKeys.LeftAlt}" 
+                    Loaded="TextBlock_Loaded"/>
+            </Border>
+            <Border Grid.Column="3" BorderBrush="Black" BorderThickness="1" CornerRadius="10" Margin="3" Background="DarkSeaGreen">
+                <TextBlock 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" 
+                    FontSize="30" 
+                    FontWeight="Medium" 
+                    Padding="5" 
+                    Tag="{x:Static local:SymbolKeys.Space}" 
+                    Loaded="TextBlock_Loaded"/>
+            </Border>
+            <Border Grid.Column="4" BorderBrush="Black" BorderThickness="1" CornerRadius="10" Margin="3"  Background="Gray">
+                <TextBlock 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" 
+                    Tag="{x:Static local:ControlKeys.RightAlt}" 
+                    Loaded="TextBlock_Loaded"/>
+            </Border>
+            <Border Grid.Column="5" BorderBrush="Black" BorderThickness="1" CornerRadius="10" Margin="3"  Background="Gray">
+                <TextBlock 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" 
+                    Tag="{x:Static local:ControlKeys.RightWin}" 
+                    Loaded="TextBlock_Loaded"/>
+            </Border>
+            <Border Grid.Column="7" BorderBrush="Black" BorderThickness="1" CornerRadius="10" Margin="3"  Background="Gray">
+                <TextBlock 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" 
+                    Tag="{x:Static local:ControlKeys.RightCtrl}" 
+                    Loaded="TextBlock_Loaded"/>
+            </Border>
+        </Grid>
+        <Grid DockPanel.Dock="Bottom" Margin="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2.5*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="2.5*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Border Grid.Column="0" BorderBrush="Black" BorderThickness="1" CornerRadius="10" Margin="3" Padding="10" Background="Gray">
+                <TextBlock 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" 
+                    Tag="{x:Static local:ControlKeys.LeftShift}" 
+                    Loaded="TextBlock_Loaded"/>
+            </Border>
+            <Border Grid.Column="1" BorderBrush="Black" BorderThickness="1" CornerRadius="10" Margin="3"   Background="DarkSalmon">
+                <TextBlock 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" 
+                    FontSize="30" 
+                    FontWeight="Medium" 
+                    Padding="5" 
+                    Tag="{x:Static local:AlphabeticKeys.Z}" 
+                    Loaded="TextBlock_Loaded"/>
+            </Border>
+            <Border Grid.Column="2" BorderBrush="Black" BorderThickness="1" CornerRadius="10" Margin="3"  Background="SandyBrown">
+                <TextBlock 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" 
+                    FontSize="30" 
+                    FontWeight="Medium" 
+                    Padding="5" 
+                    Tag="{x:Static local:AlphabeticKeys.X}" 
+                    Loaded="TextBlock_Loaded"/>
+            </Border>
+            <Border Grid.Column="3" BorderBrush="Black" BorderThickness="1" CornerRadius="10" Margin="3"  Background="Khaki">
+                <TextBlock 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" 
+                    FontSize="30" 
+                    FontWeight="Medium" 
+                    Padding="5" 
+                    Tag="{x:Static local:AlphabeticKeys.C}" 
+                    Loaded="TextBlock_Loaded"/>
+            </Border>
+            <Border Grid.Column="4" BorderBrush="Black" BorderThickness="1" CornerRadius="10" Margin="3" Background="Aquamarine">
+                <TextBlock 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" 
+                    FontSize="30" 
+                    FontWeight="Medium" 
+                    Padding="5" 
+                    Tag="{x:Static local:AlphabeticKeys.V}" 
+                    Loaded="TextBlock_Loaded"/>
+            </Border>
+            <Border Grid.Column="5" BorderBrush="Black" BorderThickness="1" CornerRadius="10" Margin="3"  Background="Aquamarine">
+                <TextBlock 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" 
+                    FontSize="30" 
+                    FontWeight="Medium" 
+                    Padding="5" 
+                    Tag="{x:Static local:AlphabeticKeys.B}" 
+                    Loaded="TextBlock_Loaded"/>
+            </Border>
+            <Border Grid.Column="6" BorderBrush="Black" BorderThickness="1" CornerRadius="10" Margin="3"  Background="Aqua">
+                <TextBlock 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" 
+                    FontSize="30" 
+                    FontWeight="Medium" 
+                    Padding="5" 
+                    Tag="{x:Static local:AlphabeticKeys.N}" 
+                    Loaded="TextBlock_Loaded"/>
+            </Border>
+            <Border Grid.Column="7" BorderBrush="Black" BorderThickness="1" CornerRadius="10" Margin="3"  Background="Aqua">
+                <TextBlock 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" 
+                    FontSize="30" 
+                    FontWeight="Medium"
+                    Padding="5" 
+                    Tag="{x:Static local:AlphabeticKeys.M}" 
+                    Loaded="TextBlock_Loaded"/>
+            </Border>
+            <Border Grid.Column="8" BorderBrush="Black" BorderThickness="1" CornerRadius="10" Margin="3"  Background="Khaki">
+                <TextBlock 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" 
+                    FontSize="30" 
+                    FontWeight="Medium" 
+                    Padding="5" 
+                    Tag="{x:Static local:SymbolKeys.OemCommas}" 
+                    Loaded="TextBlock_Loaded"/>
+            </Border>
+            <Border Grid.Column="9" BorderBrush="Black" BorderThickness="1" CornerRadius="10" Margin="3"  Background="SandyBrown">
+                <TextBlock 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" 
+                    FontSize="30" 
+                    FontWeight="Medium" 
+                    Padding="5" 
+                    Tag="{x:Static local:SymbolKeys.OemPeriod}" 
+                    Loaded="TextBlock_Loaded"/>
+            </Border>
+            <Border Grid.Column="10" BorderBrush="Black" BorderThickness="1" CornerRadius="10" Margin="3"  Background="DarkSalmon">
+                <TextBlock 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" 
+                    FontSize="30" 
+                    FontWeight="Medium" 
+                    Padding="5" 
+                    Tag="{x:Static local:SymbolKeys.OemQuestion}" 
+                    Loaded="TextBlock_Loaded"/>
+            </Border>
+            <Border Grid.Column="11" BorderBrush="Black" BorderThickness="1" CornerRadius="10" Margin="3" Background="Gray">
+                <TextBlock 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" 
+                    Tag="{x:Static local:ControlKeys.RightShift}" 
+                    Loaded="TextBlock_Loaded"/>
+            </Border>
+
+        </Grid>
+        <Grid DockPanel.Dock="Bottom">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Border Grid.Column="0" BorderBrush="Black" BorderThickness="1" CornerRadius="10" Margin="3"  Background="Gray">
+                <TextBlock 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" 
+            
+                    Tag="{x:Static local:ControlKeys.CapsLock}" 
+                    Loaded="TextBlock_Loaded"/>
+            </Border>
+            <Border Grid.Column="1" BorderBrush="Black" BorderThickness="1" CornerRadius="10" Margin="3"   Background="DarkSalmon">
+                <TextBlock 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" 
+                    FontSize="30" 
+                    FontWeight="Medium" 
+                    Padding="5" 
+                    Tag="{x:Static local:AlphabeticKeys.A}" 
+                    Loaded="TextBlock_Loaded"/>
+            </Border>
+            <Border Grid.Column="2" BorderBrush="Black" BorderThickness="1" CornerRadius="10" Margin="3"  Background="SandyBrown">
+                <TextBlock 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" 
+                    FontSize="30" 
+                    FontWeight="Medium" 
+                    Padding="5" 
+                    Tag="{x:Static local:AlphabeticKeys.S}" 
+                    Loaded="TextBlock_Loaded"/>
+            </Border>
+            <Border Grid.Column="3" BorderBrush="Black" BorderThickness="1" CornerRadius="10" Margin="3"  Background="Khaki">
+                <TextBlock 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" 
+                    FontSize="30" 
+                    FontWeight="Medium" 
+                    Padding="5" 
+                    Tag="{x:Static local:AlphabeticKeys.D}" 
+                    Loaded="TextBlock_Loaded"/>
+            </Border>
+            <Border Grid.Column="4" BorderBrush="Black" BorderThickness="1" CornerRadius="10" Margin="3"  Background="Aquamarine">
+                <TextBlock 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" 
+                    FontSize="30" 
+                    FontWeight="Medium" 
+                    Padding="5" 
+                    Tag="{x:Static local:AlphabeticKeys.F}" 
+                    Loaded="TextBlock_Loaded"/>
+            </Border>
+            <Border Grid.Column="5" BorderBrush="Black" BorderThickness="1" CornerRadius="10" Margin="3"  Background="Aquamarine">
+                <TextBlock 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" 
+                    FontSize="30" 
+                    FontWeight="Medium" 
+                    Padding="5" 
+                    Tag="{x:Static local:AlphabeticKeys.G}" 
+                    Loaded="TextBlock_Loaded"/>
+            </Border>
+            <Border Grid.Column="6" BorderBrush="Black" BorderThickness="1" CornerRadius="10" Margin="3"  Background="Aqua">
+                <TextBlock 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" 
+                    FontSize="30" 
+                    FontWeight="Medium" 
+                    Padding="5" 
+                    Tag="{x:Static local:AlphabeticKeys.H}" 
+                    Loaded="TextBlock_Loaded"/>
+            </Border>
+            <Border Grid.Column="7" BorderBrush="Black" BorderThickness="1" CornerRadius="10" Margin="3"  Background="Aqua">
+                <TextBlock 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" 
+                    FontSize="30" 
+                    FontWeight="Medium" 
+                    Padding="5" 
+                    Tag="{x:Static local:AlphabeticKeys.J}" 
+                    Loaded="TextBlock_Loaded"/>
+            </Border>
+            <Border Grid.Column="8" BorderBrush="Black" BorderThickness="1" CornerRadius="10" Margin="3"  Background="Khaki">
+                <TextBlock 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" 
+                    FontSize="30" 
+                    FontWeight="Medium" 
+                    Padding="5" 
+                    Tag="{x:Static local:AlphabeticKeys.K}" 
+                    Loaded="TextBlock_Loaded"/>
+            </Border>
+            <Border Grid.Column="9" BorderBrush="Black" BorderThickness="1" CornerRadius="10" Margin="3"  Background="SandyBrown">
+                <TextBlock 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" 
+                    FontSize="30" 
+                    FontWeight="Medium" 
+                    Padding="5" 
+                    Tag="{x:Static local:AlphabeticKeys.L}" 
+                    Loaded="TextBlock_Loaded"/>
+            </Border>
+            <Border Grid.Column="10" BorderBrush="Black" BorderThickness="1" CornerRadius="10" Margin="3" Background="DarkSalmon">
+                <TextBlock 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" 
+                    FontSize="30" 
+                    FontWeight="Medium" 
+                    Padding="5" 
+                    Tag="{x:Static local:SymbolKeys.Oem1}" 
+                    Loaded="TextBlock_Loaded"/>
+            </Border>
+            <Border Grid.Column="11" BorderBrush="Black" BorderThickness="1" CornerRadius="10" Margin="3"  Background="DarkSalmon">
+                <TextBlock 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" 
+                    FontSize="30" 
+                    FontWeight="Medium" 
+                    Padding="5" 
+                    Tag="{x:Static local:SymbolKeys.OemQuotes}" 
+                    Loaded="TextBlock_Loaded"/>
+            </Border>
+            <Border Grid.Column="12" BorderBrush="Black" BorderThickness="1" CornerRadius="10" Margin="3" Background="Gray">
+                <TextBlock 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" 
+                    Tag="{x:Static local:ControlKeys.Enter}" 
+                    Loaded="TextBlock_Loaded"/>
+            </Border>
+
+        </Grid>
+        <Grid DockPanel.Dock="Bottom">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1.5*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Border Grid.Column="0" BorderBrush="Black" BorderThickness="1" CornerRadius="10" Margin="3" Background="Gray">
+                <TextBlock 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" 
+                    Tag="{x:Static local:ControlKeys.Tab}" 
+                    Loaded="TextBlock_Loaded"/>
+            </Border>
+            <Border Grid.Column="1" BorderBrush="Black" BorderThickness="1" CornerRadius="10" Margin="3"   Background="DarkSalmon">
+                <TextBlock 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" 
+                    FontSize="30" 
+                    FontWeight="Medium" 
+                    Padding="5" 
+                    Tag="{x:Static local:AlphabeticKeys.Q}" 
+                    Loaded="TextBlock_Loaded"/>
+            </Border>
+            <Border Grid.Column="2" BorderBrush="Black" BorderThickness="1" CornerRadius="10" Margin="3"   Background="SandyBrown">
+                <TextBlock 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" 
+                    FontSize="30" 
+                    FontWeight="Medium" 
+                    Padding="5" 
+                    Tag="{x:Static local:AlphabeticKeys.W}" 
+                    Loaded="TextBlock_Loaded"/>
+            </Border>
+            <Border Grid.Column="3" BorderBrush="Black" BorderThickness="1" CornerRadius="10" Margin="3"  Background="Khaki">
+                <TextBlock 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" 
+                    FontSize="30" 
+                    FontWeight="Medium" 
+                    Padding="5" 
+                    Tag="{x:Static local:AlphabeticKeys.E}" 
+                    Loaded="TextBlock_Loaded"/>
+            </Border>
+            <Border Grid.Column="4" BorderBrush="Black" BorderThickness="1" CornerRadius="10" Margin="3"  Background="Aquamarine">
+                <TextBlock 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" 
+                    FontSize="30" 
+                    FontWeight="Medium" 
+                    Padding="5" 
+                    Tag="{x:Static local:AlphabeticKeys.R}" 
+                    Loaded="TextBlock_Loaded"/>
+            </Border>
+            <Border Grid.Column="5" BorderBrush="Black" BorderThickness="1" CornerRadius="10" Margin="3"  Background="Aquamarine">
+                <TextBlock 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" 
+                    FontSize="30" 
+                    FontWeight="Medium" 
+                    Padding="5" 
+                    Tag="{x:Static local:AlphabeticKeys.T}" 
+                    Loaded="TextBlock_Loaded"/>
+            </Border>
+            <Border Grid.Column="6" BorderBrush="Black" BorderThickness="1" CornerRadius="10" Margin="3"  Background="Aqua">
+                <TextBlock 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" 
+                    FontSize="30" 
+                    FontWeight="Medium" 
+                    Padding="5" 
+                    Tag="{x:Static local:AlphabeticKeys.Y}" 
+                    Loaded="TextBlock_Loaded"/>
+            </Border>
+            <Border Grid.Column="7" BorderBrush="Black" BorderThickness="1" CornerRadius="10" Margin="3"  Background="Aqua">
+                <TextBlock 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" 
+                    FontSize="30" 
+                    FontWeight="Medium" 
+                    Padding="5" 
+                    Tag="{x:Static local:AlphabeticKeys.U}" 
+                    Loaded="TextBlock_Loaded"/>
+            </Border>
+            <Border Grid.Column="8" BorderBrush="Black" BorderThickness="1" CornerRadius="10" Margin="3"  Background="Khaki">
+                <TextBlock 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" 
+                    FontSize="30" 
+                    FontWeight="Medium" 
+                    Padding="5" 
+                    Tag="{x:Static local:AlphabeticKeys.I}" 
+                    Loaded="TextBlock_Loaded"/>
+            </Border>
+            <Border Grid.Column="9" BorderBrush="Black" BorderThickness="1" CornerRadius="10" Margin="3"  Background="SandyBrown">
+                <TextBlock 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" 
+                    FontSize="30" 
+                    FontWeight="Medium" 
+                    Padding="5" 
+                    Tag="{x:Static local:AlphabeticKeys.O}" 
+                    Loaded="TextBlock_Loaded"/>
+            </Border>
+            <Border Grid.Column="10" BorderBrush="Black" BorderThickness="1" CornerRadius="10" Margin="3"  Background="DarkSalmon">
+                <TextBlock 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" 
+                    FontSize="30" 
+                    FontWeight="Medium" 
+                    Padding="5" 
+                    Tag="{x:Static local:AlphabeticKeys.P}" 
+                    Loaded="TextBlock_Loaded"/>
+            </Border>
+            <Border Grid.Column="11" BorderBrush="Black" BorderThickness="1" CornerRadius="10" Margin="3" Background="DarkSalmon">
+                <TextBlock 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" 
+                    FontSize="30" 
+                    FontWeight="Medium" 
+                    Padding="5" 
+                    Tag="{x:Static local:SymbolKeys.OemOpenBrackets}" 
+                    Loaded="TextBlock_Loaded"/>
+            </Border>
+            <Border Grid.Column="12" BorderBrush="Black" BorderThickness="1" CornerRadius="10" Margin="3"  Background="DarkSalmon">
+                <TextBlock 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" 
+                    FontSize="30" 
+                    FontWeight="Medium" 
+                    Padding="5" 
+                    Tag="{x:Static local:SymbolKeys.Oem6}" 
+                    Loaded="TextBlock_Loaded"/>
+            </Border>
+            <Border Grid.Column="13" BorderBrush="Black" BorderThickness="1" CornerRadius="10" Margin="3"  Background="Gray">
+                <TextBlock 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" 
+                    FontSize="30" 
+                    FontWeight="Medium" 
+                    Padding="5" 
+                    Tag="{x:Static local:SymbolKeys.Oem5}" 
+                    Loaded="TextBlock_Loaded"/>
+            </Border>
+        </Grid>
+        <Grid DockPanel.Dock="Bottom">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Border Grid.Column="0" BorderBrush="Black" BorderThickness="1" CornerRadius="10" Margin="3"  Background="DarkSalmon">
+                <TextBlock 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" 
+                    FontSize="30" 
+                    FontWeight="Medium" 
+                    Padding="5" 
+                    Tag="{x:Static local:SymbolKeys.Oem3}" 
+                    Loaded="TextBlock_Loaded"/>
+            </Border>
+            <Border Grid.Column="1" BorderBrush="Black" BorderThickness="1" CornerRadius="10" Margin="3" Background="DarkSalmon">
+                <TextBlock 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" 
+                    FontSize="30" 
+                    FontWeight="Medium" 
+                    Padding="5" 
+                    Tag="{x:Static local:SymbolKeys.D1}" 
+                    Loaded="TextBlock_Loaded"/>
+            </Border>
+            <Border Grid.Column="2" BorderBrush="Black" BorderThickness="1" CornerRadius="10" Margin="3"  Background="SandyBrown">
+                <TextBlock 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" 
+                    FontSize="30" 
+                    FontWeight="Medium" 
+                    Padding="5" 
+                    Tag="{x:Static local:SymbolKeys.D2}" 
+                    Loaded="TextBlock_Loaded"/>
+            </Border>
+            <Border Grid.Column="3" BorderBrush="Black" BorderThickness="1" CornerRadius="10" Margin="3"  Background="Khaki">
+                <TextBlock 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" 
+                    FontSize="30" 
+                    FontWeight="Medium" 
+                    Padding="5" 
+                    Tag="{x:Static local:SymbolKeys.D3}" 
+                    Loaded="TextBlock_Loaded"/>
+            </Border>
+            <Border Grid.Column="4" BorderBrush="Black" BorderThickness="1" CornerRadius="10" Margin="3" Background="Aquamarine">
+                <TextBlock 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" 
+                    FontSize="30" 
+                    FontWeight="Medium" 
+                    Padding="5" 
+                    Tag="{x:Static local:SymbolKeys.D4}" 
+                    Loaded="TextBlock_Loaded"/>
+            </Border>
+            <Border Grid.Column="5" BorderBrush="Black" BorderThickness="1" CornerRadius="10" Margin="3"  Background="Aquamarine">
+                <TextBlock 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" 
+                    FontSize="30" 
+                    FontWeight="Medium" 
+                    Padding="5" 
+                    Tag="{x:Static local:SymbolKeys.D5}" 
+                    Loaded="TextBlock_Loaded"/>
+            </Border>
+            <Border Grid.Column="6" BorderBrush="Black" BorderThickness="1" CornerRadius="10" Margin="3"  Background="Aqua">
+                <TextBlock 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" 
+                    FontSize="30" 
+                    FontWeight="Medium" 
+                    Padding="5" 
+                    Tag="{x:Static local:SymbolKeys.D6}" 
+                    Loaded="TextBlock_Loaded"/>
+            </Border>
+            <Border Grid.Column="7" BorderBrush="Black" BorderThickness="1" CornerRadius="10" Margin="3"  Background="Aqua">
+                <TextBlock 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" 
+                    FontSize="30" 
+                    FontWeight="Medium" 
+                    Padding="5" 
+                    Tag="{x:Static local:SymbolKeys.D7}" 
+                    Loaded="TextBlock_Loaded"/>
+            </Border>
+            <Border Grid.Column="8" BorderBrush="Black" BorderThickness="1" CornerRadius="10" Margin="3"  Background="Khaki">
+                <TextBlock 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" 
+                    FontSize="30" 
+                    FontWeight="Medium" 
+                    Padding="5" 
+                    Tag="{x:Static local:SymbolKeys.D8}" 
+                    Loaded="TextBlock_Loaded"/>
+            </Border>
+            <Border Grid.Column="9" BorderBrush="Black" BorderThickness="1" CornerRadius="10" Margin="3"  Background="SandyBrown">
+                <TextBlock 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" 
+                    FontSize="30" 
+                    FontWeight="Medium" 
+                    Padding="5" 
+                    Tag="{x:Static local:SymbolKeys.D9}" 
+                    Loaded="TextBlock_Loaded"/>
+            </Border>
+            <Border Grid.Column="10" BorderBrush="Black" BorderThickness="1" CornerRadius="10" Margin="3"  Background="DarkSalmon">
+                <TextBlock 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" 
+                    FontSize="30" 
+                    FontWeight="Medium" 
+                    Padding="5" 
+                    Tag="{x:Static local:SymbolKeys.D0}" 
+                    Loaded="TextBlock_Loaded"/>
+            </Border>
+            <Border Grid.Column="11" BorderBrush="Black" BorderThickness="1" CornerRadius="10" Margin="3" Background="DarkSalmon">
+                <TextBlock 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" 
+                    FontSize="30" 
+                    FontWeight="Medium" 
+                    Padding="5" 
+                    Tag="{x:Static local:SymbolKeys.OemMinus}" 
+                    Loaded="TextBlock_Loaded"/>
+            </Border>
+            <Border Grid.Column="12" BorderBrush="Black" BorderThickness="1" CornerRadius="10" Margin="3"  Background="DarkSalmon">
+                <TextBlock 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" 
+                    FontSize="30" 
+                    FontWeight="Medium" 
+                    Padding="5" 
+                    Tag="{x:Static local:SymbolKeys.OemPlus}" 
+                    Loaded="TextBlock_Loaded"/>
+            </Border>
+            <Border Grid.Column="14" BorderBrush="Black" BorderThickness="1" CornerRadius="10" Margin="3"  Background="Gray">
+                <TextBlock 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" 
+                    Tag="{x:Static local:ControlKeys.Backspace}" 
+                    Loaded="TextBlock_Loaded"/>
+            </Border>
+        </Grid>
+        <Grid   DockPanel.Dock="Top">
+            <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition ></RowDefinition>
+                    <RowDefinition Height="5"></RowDefinition>
+                    <RowDefinition ></RowDefinition>
+                    <RowDefinition Height="5"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition ></ColumnDefinition>
+                    <ColumnDefinition Width="5"></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition Width="5"></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition Width="5"></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+
+
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
+                    <TextBlock Margin="3" FontSize="14" >Speed</TextBlock>
+                    <TextBlock x:Name="speed" Margin="3" FontSize="14"   FontWeight="ExtraBold">0</TextBlock>
+                    <TextBlock Margin="3" FontSize="14" >chars/min</TextBlock>
+                </StackPanel>
+                <StackPanel Grid.Column="2" Grid.Row="0" Orientation="Horizontal" >
+                    <TextBlock Margin="3" FontSize="14" >Fails</TextBlock>
+                    <TextBlock x:Name="fails" Margin="3" FontSize="14"   FontWeight="ExtraBold">0</TextBlock>
+                </StackPanel>
+                <Grid Grid.Column="4" Grid.Row="0" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                        <ColumnDefinition Width="3"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0" Grid.Row="0" Orientation="Horizontal" >
+                        <TextBlock Margin="3" FontSize="14" >Difficulty</TextBlock>
+                        <TextBlock Margin="3" FontSize="14" FontWeight="ExtraBlack" >0</TextBlock>
+                    </StackPanel>
+                    <Slider Grid.Column="2" Orientation="Horizontal" Margin="3"></Slider>
+                </Grid>
+                <CheckBox Grid.Column="6" Grid.Row="0" Margin="3" FontSize="14">
+                    Case Sensitive
+                </CheckBox>
+                <Button Grid.Column="4" Grid.Row="2">
+                    Start
+                </Button>
+                <Button Grid.Column="6" Grid.Row="2">
+                    Stop
+                </Button>
+            </Grid>
+
+
+
+        </Grid>
+
+
+        <DockPanel Margin="3" >
+            <UniformGrid  DockPanel.Dock="Left" >
+                <UniformGrid.Rows>2</UniformGrid.Rows>
+                <TextBlock  x:Name="Input" FontSize="20" FontFamily="Consolas" Background="LightPink">
+                4546</TextBlock>
+                <TextBlock >
+                    <TextBlock.Background>
+                        <VisualBrush Visual="{Binding ElementName=Input}"></VisualBrush>
+                    </TextBlock.Background>
+                </TextBlock>
+            </UniformGrid>
+            <TextBlock   x:Name="Lefted" DockPanel.Dock="Right" FontSize="20" FontFamily="Consolas" Background="SkyBlue">
+            </TextBlock>
+        </DockPanel>
+
+
+
+    </DockPanel>
 </Window>

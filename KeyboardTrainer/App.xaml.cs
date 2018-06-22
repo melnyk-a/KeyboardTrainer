@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KeyboardTrainer.Presenters;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,5 +14,10 @@ namespace KeyboardTrainer
     /// </summary>
     public partial class App : Application
     {
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            IPresenter presenter = new KeyboardTrainerPresenter(new MainWindow());
+            presenter.Run();
+        }
     }
 }
