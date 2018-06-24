@@ -34,6 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Ninject, Version=3.3.4.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.3.4\lib\net45\Ninject.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -54,6 +57,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="EventArguments\KeyboardKeyEventArgs.cs" />
+    <Compile Include="Models\KeyChars\KeyCharsProvider.cs" />
+    <Compile Include="Models\SpeedCalculator.cs" />
+    <Compile Include="Models\StringBuilderExtensions.cs" />
+    <Compile Include="Models\StringCreator.cs" />
     <Compile Include="Presenters\IPresenter.cs" />
     <Compile Include="Presenters\KeyboardTrainerPresenter.cs" />
     <Compile Include="Models\SourceString.cs" />
@@ -96,6 +104,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

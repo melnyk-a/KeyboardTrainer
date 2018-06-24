@@ -1,10 +1,9 @@
-﻿using KeyboardTrainer.Presenters;
+﻿using KeyboardTrainer.Models;
+using KeyboardTrainer.Models.KeyChars;
+using KeyboardTrainer.Presenters;
+using KeyboardTrainer.Views;
+using Ninject;
 using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace KeyboardTrainer
@@ -14,9 +13,29 @@ namespace KeyboardTrainer
     /// </summary>
     public partial class App : Application
     {
+        private readonly Lazy<IKernel> container;
+
+        public App()
+        {
+            container = new Lazy<IKernel>(CreateContainer);
+        }
+
+        private IKernel CreateContainer()
+        {
+            var container = new StandardKernel();
+
+            container.Bind<IPresenter>().To<KeyboardTrainerPresenter>().InSingletonScope();
+            container.Bind<IKeyboardTrainerView>().To<MainWindow>().InSingletonScope();
+            container.Bind<SpeedCalculator>().To<SpeedCalculator>().InSingletonScope();
+            container.Bind<SourceString>().To<SourceString>().InSingletonScope();
+            container.Bind<KeyCharsProvider>().To<KeyCharsProvider>().InSingletonScope();
+
+            return container;
+        }
+
         protected override void OnStartup(StartupEventArgs e)
         {
-            IPresenter presenter = new KeyboardTrainerPresenter(new MainWindow());
+            IPresenter presenter = container.Value.Get<IPresenter>(); ;
             presenter.Run();
         }
     }

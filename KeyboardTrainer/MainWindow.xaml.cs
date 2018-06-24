@@ -1,191 +1,167 @@
-﻿using KeyboardTrainer.KeyChars;
-using KeyboardTrainer.Models;
+﻿using KeyboardTrainer.EventArguments;
 using KeyboardTrainer.Views;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Windows.Threading;
 
 namespace KeyboardTrainer
 {
-
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window, IKeyboardTrainerView
+    internal partial class MainWindow : Window, IKeyboardTrainerView
     {
-        private readonly Dictionary<TextBlock, KeyChar> collection = new Dictionary<TextBlock, KeyChar>();
-        DispatcherTimer timer = new DispatcherTimer();
-        private int keyPerSeconds;
+        private readonly Dictionary<Key, TextBlock> keys = new Dictionary<Key, TextBlock>();
 
-        DateTime first = new DateTime();
-        DateTime second = new DateTime();
         public MainWindow()
         {
             InitializeComponent();
-
-            Lefted.Text = SourceString.Source;
-
-            first = DateTime.Now;
-            timer.Interval = TimeSpan.FromSeconds(1);
-            timer.Tick += (sender, e) =>
-              {
-                  second = DateTime.Now;
-                  speed.Text = (Math.Round(60*keyPerSeconds/second.Subtract(first).TotalSeconds)).ToString();
-   
-    
-              };
-            timer.Start();
         }
 
+        public bool CaseSensitive => caseSensitive.IsChecked == true ? true : false;
 
+        public int Difficulty
+        {
+            get
+            {
+                int.TryParse(difficulty.Text, out int result);
+                return result;
+            }
+        }
+
+        public int Fails
+        {
+            get
+            {
+                int.TryParse(fails.Text, out int failsResult);
+                return failsResult;
+            }
+            set => fails.Text = value.ToString();
+        }
+
+        public int Speed
+        {
+            get
+            {
+                int.TryParse(speed.Text, out int speedResult);
+                return speedResult;
+            }
+            set => speed.Text = value.ToString();
+        }
+
+        public int StringLength
+        {
+            get => Convert.ToInt32(Lefted.ActualWidth / Lefted.FontSize);
+        }
+
+        public event EventHandler<KeyboardKeyEventArgs> KeyboardKeyDown;
+        public event EventHandler<KeyboardKeyEventArgs> KeyboardKeyLoaded;
+        public event EventHandler<KeyboardKeyEventArgs> KeyboardKeyUp;
+        public event EventHandler Start;
+
+        private void ActivateControls(bool isActive)
+        {
+            startButton.IsEnabled = isActive;
+            stopButton.IsEnabled = !isActive;
+            caseSensitive.IsEnabled = isActive;
+            difficultySlider.IsEnabled = isActive;
+        }
+
+        public void Finish()
+        {
+            ActivateControls(true);
+        }
+
+        private void ShowKeyDown(Key key)
+        {
+            bool isExist = keys.TryGetValue(key, out TextBlock textBlock);
+            if (isExist)
+            {
+                Border border = keys[key].Parent as Border;
+                border.BorderThickness = new Thickness(6);
+                keys[key].Padding = new Thickness(0);
+                border.BorderBrush = new SolidColorBrush(Colors.LimeGreen);
+            }
+        }
+
+        private void ShowKeyUp(Key key)
+        {
+            bool isExist = keys.TryGetValue(key, out TextBlock textBlock);
+            if (isExist)
+            {
+                Border border = keys[key].Parent as Border;
+                border.BorderThickness = new Thickness(1);
+                keys[key].Padding = new Thickness(5);
+                border.BorderBrush = new SolidColorBrush(Colors.Black);
+            }
+        }
+
+        private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            difficulty.Text = Convert.ToInt32(e.NewValue).ToString();
+        }
+
+        private void StartButton_Click(object sender, RoutedEventArgs e)
+        {
+            Start?.Invoke(this, EventArgs.Empty);
+            ActivateControls(false);
+        }
+
+        private void StopButton_Click(object sender, RoutedEventArgs e)
+        {
+            ActivateControls(true);
+        }
 
         private void TextBlock_Loaded(object sender, RoutedEventArgs e)
         {
             TextBlock textBlock = sender as TextBlock;
-            KeyChar tag = textBlock.Tag as KeyChar;
-            textBlock.Text = tag.ToString();
-            collection.Add(textBlock, tag);
+            Key key = (Key)textBlock.Tag;
+            keys.Add(key, textBlock);
+            KeyboardKeyLoaded?.Invoke(this, new KeyboardKeyEventArgs(key, Keyboard.IsKeyToggled(Key.CapsLock)));
+        }
 
+        public void UpdateKey(Key key, string content)
+        {
+            TextBlock textBlock = keys[key];
+            textBlock.Text = content;
         }
 
         private void Window_PreviewKeyDown(object sender, KeyEventArgs e)
         {
-            KeyChar key;
-            if (e.Key == Key.CapsLock)
+            if (!startButton.IsEnabled)
             {
-                foreach (var item in collection)
-                {
-                    key = item.Value;
-                    if (key is AlphabeticKey alphabeticKey)
-                    {
-                        alphabeticKey.UpperCase = e.IsToggled;
-                        item.Key.Text = alphabeticKey.ToString();
-                    }
-
-                }
-
-            }
-            if (e.Key == Key.LeftShift || e.Key == Key.RightShift)
-            {
-                foreach (var item in collection)
-                {
-                    key = item.Value;
-                    if (key is AlphabeticKey alphabeticKey)
-                    {
-                        alphabeticKey.UpperCase = !e.KeyboardDevice.IsKeyToggled(Key.CapsLock);
-                        item.Key.Text = alphabeticKey.ToString();
-                    }
-                    else if (key is SymbolKey symbolKey)
-                    {
-                        symbolKey.IsAdditionalSymbolActive = true;
-                        item.Key.Text = symbolKey.ToString();
-                    }
-                }
-            }
-
-
-            foreach (var item in collection)
-            {
-                Key keyToCompare = e.Key == Key.System ? e.SystemKey : e.Key;
-                key = item.Value;
-                if (keyToCompare == key.VirtualKey)
-                {
-                    Border border = item.Key.Parent as Border;
-                    border.BorderThickness = new Thickness(6);
-                    item.Key.Padding = new Thickness(0);
-                    border.BorderBrush = new SolidColorBrush(Colors.LimeGreen);
-
-                    
-                    ++keyPerSeconds;
-
-                    char.TryParse(key.Content, out char result);
-                    if(result==SourceString.Next)
-                    {
-                        stringBuilder.Append(item.Value.ToString());
-                        Input.Text = stringBuilder.ToString();
-                        if (SourceString.HasNext)
-                        {
-                            SourceString.Move();
-                            Lefted.Text = SourceString.Source;
-                        }
-                        else
-                        {
-                            Lefted.Text = null;
-                        }
-                       
-                    }
-                    else
-                    {
-
-                        int.TryParse(fails.Text, out int failsResult);
-                        ++failsResult;
-                        fails.Text = failsResult.ToString();
-                    }
-                   
-                }
-                if(keyToCompare==Key.LeftAlt|| keyToCompare == Key.RightAlt)
+                if (e.Key == Key.LeftAlt || e.Key == Key.RightAlt)
                 {
                     e.Handled = true;
                 }
-                
+                KeyboardKeyDown?.Invoke(this, new KeyboardKeyEventArgs(e.Key, Keyboard.IsKeyToggled(Key.CapsLock)));
+                ShowKeyDown(e.Key);
             }
-
-            
-            //Input.Inlines.Add(new Run("a") { Background = Brushes.LightPink });
-            
         }
 
-        
-
-        private StringBuilder stringBuilder = new StringBuilder();
         private void Window_PreviewKeyUp(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.LeftShift || e.Key == Key.RightShift)
+            if (!startButton.IsEnabled)
             {
-
-                foreach (var item in collection)
-                {
-                    KeyChar key = item.Value;
-                    if (key is AlphabeticKey alphabeticKey)
-                    {
-                        alphabeticKey.UpperCase = e.KeyboardDevice.IsKeyToggled(Key.CapsLock);
-                        item.Key.Text = alphabeticKey.ToString();
-                    }
-                    else if (key is SymbolKey symbolKey)
-                    {
-                        symbolKey.IsAdditionalSymbolActive = false;
-                        item.Key.Text = symbolKey.ToString();
-                    }
-                }
-            }
-
-            foreach (var item in collection)
-            {
-                Key keyToCompare = e.Key == Key.System ? e.SystemKey : e.Key;
-                if (keyToCompare == item.Value.VirtualKey)
-                {
-                    Border border = item.Key.Parent as Border;
-                    border.BorderThickness = new Thickness(1);
-                    item.Key.Padding = new Thickness(5);
-                    border.BorderBrush = new SolidColorBrush(Colors.Black);
-                }
-
+                KeyboardKeyUp?.Invoke(
+                    this, 
+                    new KeyboardKeyEventArgs(e.Key, Keyboard.IsKeyToggled(Key.CapsLock))
+                    );
+                ShowKeyUp(e.Key);
             }
         }
 
+        public void UpdateInputString(string content)
+        {
+            Input.Text = content;
+        }
 
+        public void UpdateLeftedString(string content)
+        {
+            Lefted.Text = content;
+        }
     }
 }

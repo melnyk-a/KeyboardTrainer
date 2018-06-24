@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 
 namespace KeyboardTrainer.KeyChars
 {
     internal sealed class SymbolKey : KeyChar
     {
-        private readonly char mainSymbol;
         private readonly char additionalSymbol;
+        private readonly char mainSymbol;
 
         public SymbolKey(Key virtualKey, char mainSymbol, char additionalSymbol) :
             base(virtualKey, mainSymbol.ToString())

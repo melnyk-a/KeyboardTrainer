@@ -1,24 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace KeyboardTrainer.Models
+﻿namespace KeyboardTrainer.Models
 {
-    internal static class SourceString
+    internal class SourceString
     {
+        private int currentIndex = 0;
+        private string source;
 
-        private static string source = "mama mama mama mama mama";
-        private static int current = 0;
+        public bool HasNext => currentIndex < source.Length;
 
-        public static string Source => source.Substring(current);
+        public string LeftedSubString => source.Substring(currentIndex);
 
-        public static char Next => source[current];
-        public static bool HasNext => current < source.Length - 1;
-        public static void Move()
+        public char Next => source[currentIndex];
+        
+        public string PassedSubstring => source.Substring(0, currentIndex);
+
+        public void Create(int length, int range, bool isCaseSensitive)
         {
-            ++current;
+            StringCreator stringCreator = new StringCreator();
+            source = stringCreator.CreateString(length, range, isCaseSensitive);
+            currentIndex = 0;
+        }
+        
+        public void Move()
+        {
+            ++currentIndex;
         }
     }
 }

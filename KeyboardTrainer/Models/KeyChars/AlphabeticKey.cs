@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace KeyboardTrainer.KeyChars
@@ -15,8 +11,8 @@ namespace KeyboardTrainer.KeyChars
         public AlphabeticKey(Key virtualKey, char alphabeticSymbol) :
             base(virtualKey, Char.ToLower(alphabeticSymbol).ToString())
         {
-            this.lowerCase = Char.ToLower(alphabeticSymbol);
-            this.upperCase = Char.ToUpper(alphabeticSymbol); ;
+            lowerCase = Char.ToLower(alphabeticSymbol);
+            upperCase = Char.ToUpper(alphabeticSymbol); ;
         }
 
         public bool UpperCase
