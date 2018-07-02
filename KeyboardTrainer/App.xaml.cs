@@ -35,7 +35,7 @@ namespace KeyboardTrainer
 
         protected override void OnStartup(StartupEventArgs e)
         {
-            IPresenter presenter = container.Value.Get<IPresenter>(); ;
+            IPresenter presenter = container.Value.Get<IPresenter>();
             presenter.Run();
         }
     }

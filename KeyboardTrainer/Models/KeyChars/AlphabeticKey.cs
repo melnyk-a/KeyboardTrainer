@@ -12,7 +12,7 @@ namespace KeyboardTrainer.KeyChars
             base(virtualKey, Char.ToLower(alphabeticSymbol).ToString())
         {
             lowerCase = Char.ToLower(alphabeticSymbol);
-            upperCase = Char.ToUpper(alphabeticSymbol); ;
+            upperCase = Char.ToUpper(alphabeticSymbol);
         }
 
         public bool UpperCase
