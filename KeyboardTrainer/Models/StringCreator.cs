@@ -53,7 +53,7 @@ namespace KeyboardTrainer.Models
                 {
                     if (char.IsLetter(stringBuilder[i]))
                     {
-                        bool needToUpper = random.Next(100) < 50 ? true : false;
+                        bool needToUpper = random.Next(100) < 50;
                         if (needToUpper)
                         {
                             stringBuilder[i] = char.ToUpper(stringBuilder[i]);
