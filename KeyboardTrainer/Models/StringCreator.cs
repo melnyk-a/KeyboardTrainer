@@ -5,7 +5,7 @@ namespace KeyboardTrainer.Models
 {
     internal sealed class StringCreator
     {
-        private const int evarengeWordLength = 7;
+        private const int averageWordLength = 7;
         private const string validChars = "abcdefghijklmnopqrstuvwxyz1234567890`~-_=+[];',./\\|{}:\"<>?";
         private readonly Random random = new Random();
 
@@ -28,7 +28,7 @@ namespace KeyboardTrainer.Models
         {
             StringBuilder stringBuilder = new StringBuilder();
             string validChars = CreateRandomChars(range);
-            int wordLength = random.Next(1, evarengeWordLength);
+            int wordLength = random.Next(1, averageWordLength);
             int wordIndex = 0;
 
             for (int i = 0; i < length; i++)
