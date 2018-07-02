@@ -21,7 +21,7 @@ namespace KeyboardTrainer
             InitializeComponent();
         }
 
-        public bool CaseSensitive => caseSensitive.IsChecked == true ? true : false;
+        public bool CaseSensitive => caseSensitive.IsChecked.Value;
 
         public int Difficulty
         {
