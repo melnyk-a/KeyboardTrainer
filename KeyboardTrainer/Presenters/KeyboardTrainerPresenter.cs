@@ -70,12 +70,12 @@ namespace KeyboardTrainer.Presenters
                     view.Finish();
                     timer.Stop();
                 }
+                speedCalculator.ActionDone();
             }
             else
             {
                 view.Fails = ++view.Fails;
             }
-            speedCalculator.ActionDone();
         }
 
         private void SetUpTimer()
