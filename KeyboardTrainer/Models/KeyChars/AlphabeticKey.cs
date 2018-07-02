@@ -9,10 +9,10 @@ namespace KeyboardTrainer.KeyChars
         private readonly char upperCase;
 
         public AlphabeticKey(Key virtualKey, char alphabeticSymbol) :
-            base(virtualKey, Char.ToLower(alphabeticSymbol).ToString())
+            base(virtualKey, char.ToLower(alphabeticSymbol).ToString())
         {
-            lowerCase = Char.ToLower(alphabeticSymbol);
-            upperCase = Char.ToUpper(alphabeticSymbol);
+            lowerCase = char.ToLower(alphabeticSymbol);
+            upperCase = char.ToUpper(alphabeticSymbol);
         }
 
         public bool UpperCase
