@@ -4,10 +4,9 @@ namespace KeyboardTrainer.KeyChars
 {
     internal sealed class ControlKey : KeyChar
     {
-        public ControlKey(Key virtualKey, string content) : 
+        public ControlKey(Key virtualKey, string content) :
             base(virtualKey, content)
         {
-
         }
     }
 }
